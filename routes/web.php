@@ -11,6 +11,18 @@
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/', function () {
     return view('home/home');
 });
+// Route::get('/login', function () {
+// return view('login/login');
+// });
+
+Auth::routes();
+
+// Route::get('/login', 'LoginController@index')->name('login');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');

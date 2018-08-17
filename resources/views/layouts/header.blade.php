@@ -14,36 +14,36 @@
     <!-- Google Web Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Lato:300,400,700,900" rel="stylesheet">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{$css}}bootstrap.min.css">
     <!-- Font Aweosme -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{$css}}font-awesome.min.css">
     <!-- Owl Carousel -->
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="{{$css}}owl.carousel.min.css">
     <!-- Magnific Popup -->
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="{{$css}}magnific-popup.css">
     <!-- Animate CSS -->
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="{{$css}}animate.css">
 
 	<!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <link rel="stylesheet" href="{{$css}}normalize.css">
+    <link rel="stylesheet" href="{{$css}}style.css">
+    <link rel="stylesheet" href="{{$css}}responsive.css">
+    <script src="{{$js}}vendor/modernizr-2.8.3.min.js"></script>
 
 	<!-- Color Switcher -->
-	<link rel="stylesheet" href="css/colors/red.css" id="color-switch">
+	<link rel="stylesheet" href="{{$css}}colors/red.css" id="color-switch">
 	<!-- teamplate colors -->
-	<!-- <link rel="stylesheet" href="css/colors/turquoise.css">-->
-	<!-- <link rel="stylesheet" href="css/colors/light-green.css"> -->
-	<!-- <link rel="stylesheet" href="css/colors/purple.css"> -->
-	<!-- <link rel="stylesheet" href="css/colors/light-blue.css"> -->
-	<!-- <link rel="stylesheet" href="css/colors/brown.css"> -->
-	<!-- <link rel="stylesheet" href="css/colors/yellow.css"> -->
-	<!-- <link rel="stylesheet" href="css/colors/green.css"> -->
-	<!-- <link rel="stylesheet" href="css/colors/pink.css"> -->
-	<!-- <link rel="stylesheet" href="css/colors/deep-orange.css"> -->
-	<!-- <link rel="stylesheet" href="css/colors/indigo.css"> -->
-	<!-- <link rel="stylesheet" href="css/colors/orange.css"> -->
+	<!-- <link rel="stylesheet" href="{{$css}}colors/turquoise.css">-->
+	<!-- <link rel="stylesheet" href="{{$css}}colors/light-green.css"> -->
+	<!-- <link rel="stylesheet" href="{{$css}}colors/purple.css"> -->
+	<!-- <link rel="stylesheet" href="{{$css}}colors/light-blue.css"> -->
+	<!-- <link rel="stylesheet" href="{{$css}}colors/brown.css"> -->
+	<!-- <link rel="stylesheet" href="{{$css}}colors/yellow.css"> -->
+	<!-- <link rel="stylesheet" href="{{$css}}colors/green.css"> -->
+	<!-- <link rel="stylesheet" href="{{$css}}colors/pink.css"> -->
+	<!-- <link rel="stylesheet" href="{{$css}}colors/deep-orange.css"> -->
+	<!-- <link rel="stylesheet" href="{{$css}}colors/indigo.css"> -->
+	<!-- <link rel="stylesheet" href="{{$css}}colors/orange.css"> -->
 	<!-- CSS FOR DEMO - NOT INCLUDED IN MAIN FILES -->
     <link rel="stylesheet" href="demo/demo.css">
 </head>
