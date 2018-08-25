@@ -26,7 +26,7 @@
 
 	<!-- Custom Stylesheet -->
     <link rel="stylesheet" href="{{$css}}normalize.css">
-    <link rel="stylesheet" href="{{$css}}style.css">
+    <link rel="stylesheet" href="{{$css}}style2.css">
     <link rel="stylesheet" href="{{$css}}responsive.css">
     <script src="{{$js}}vendor/modernizr-2.8.3.min.js"></script>
 
@@ -83,6 +83,36 @@
                                 <li><a href="#contact" data-scroll>Pasang Iklan</a></li>
 
                                 <li class="nav-download-btn"><a href="#download-app" data-scroll>Berlangganan</a></li>
+                                 @if(!Session::get('id'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{Session::get('name')}} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="background-color:#ed575b">
+                                    <center><a class="dropdown-item" href="{{url('/dashboard')}}" data-scroll>
+                                            Dashboard
+                                        </a></center>
+                                    <center><a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                    {{ __('Logout') }}
+                                    </a></center>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    
+                                </div>
+                            </li>
+                        @endif
                             </ul>
                         </div><!-- .navbar-collapse -->
 					</div>

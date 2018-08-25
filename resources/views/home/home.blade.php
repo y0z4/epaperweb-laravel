@@ -16,7 +16,7 @@
 
                 <div class="col-md-5 col-sm-5 intro-image wow fadeIn">
                     <div class="intro-image-content">
-                        <img src="images/Topskor2107201800.jpg" alt="" class="img-responsive">
+                        <img src="{{('public/images/Topskor2107201800.jpg')}}" alt="" class="img-responsive" style="margin-top:70px">
                     </div>
                 </div><!-- Ends: .intro-image -->
             </div>

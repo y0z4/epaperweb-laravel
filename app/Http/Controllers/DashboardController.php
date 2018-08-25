@@ -2,27 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use DB;
 
 class DashboardController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+	public function index(request $request)
+	{
+		if(!Session::get('id')){
+			return redirect('login')->with('alert','Login First');
+		  }
+		  else{
+			return view('dashboard/dashboard');
+		  }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('dashboard/dashboard');
-    }
+		$page = 'Dashboard';
+
+		 $getuser = DB::table('users')
+		            ->where('id', '=', $id)
+		            ->first();
+
+		
+
+		 return view ('dashboard.dashboard',[
+		 	'page' => $page,
+		 	
+		 	'getuser' => $getuser,
+		 	
+		 ]);
+
+		
+	}
+
 }

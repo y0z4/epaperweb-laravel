@@ -6,7 +6,13 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
-
+                <div class="lx-main-content">
+                        @if(session('warning'))
+                        <div class="alert alert-danger" role="alert" style="text-align: center">
+                            {{session('warning')}}
+                        </div>
+                        @endif
+                    <div class="container">
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                         @csrf

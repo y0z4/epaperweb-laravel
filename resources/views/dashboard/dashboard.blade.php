@@ -14,12 +14,19 @@
                         </div>
                     @endif
                 <div class="panel-body">
-                    Hello {{Auth::user()->name}}!<br/>
-                    Your email : {{Auth::user()->email}}<br/>
-                    You are login using username : {{Auth::user()->username}}
+                        <center>You are logged in!</center>
+                    Hello {{Session::get('name')}}!<br/>
+                    Your email : {{Session::get('email')}}<br/>
+                    You are login using username : {{Session::get('username')}}<br/>
+                    And you are login via : {{Session::get('provider')}}<br/>
+                    <center>
+                            <a href="{{url('/')}}" class="btn btn-primary col-md-2">
+                                <i class="fa fa-home fa-fw"></i> Home
+                               </a>   
+                    </center>
                 </div>
 
-                    You are logged in!
+                    
                 </div>
             </div>
         </div>

@@ -15,13 +15,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $css = asset('/public/assets/css').'/';
-        $css2 = asset('/public/css').'/';
-        $js = asset('/public/assets/js').'/';
-        $js2 = asset('/public/js').'/';
-        $font = asset('/public/assets/fonts').'/';
-        $images = asset('/public/assets/images').'/';
-        $plugin = asset('/public/assets/plugin').'/';
+        $css = secure_asset('/public/assets/css').'/';
+        $css2 = secure_asset('/public/css').'/';
+        $js = secure_asset('/public/assets/js').'/';
+        $js2 = secure_asset('/public/js').'/';
+        $font = secure_asset('/public/assets/fonts').'/';
+        $images = secure_asset('/public/assets/images').'/';
+        $plugin = secure_asset('/public/assets/plugin').'/';
 
         View::share('css',$css);
         View::share('css2',$css2);
