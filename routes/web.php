@@ -12,13 +12,13 @@
 */
 
 // Route::get('/', function () {
-//     return view('welcome');
+//     return view('home/home');
 // });
-Route::get('/', function () {
-    return view('home/home');
-});
-// Route::get('/login', function () {
-// return view('login/login');
+Route::get('/', 'HomeController@index');
+Route::get('/blog/{any}', 'DetailBeritaController@index');
+Route::get('/blog/', 'BlogController@index');
+// Route::get('/blog/', function () {
+//     return view('blog/blog');
 // });
 
 Auth::routes();

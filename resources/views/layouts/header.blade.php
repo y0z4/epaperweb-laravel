@@ -16,7 +16,8 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{$css}}bootstrap.min.css">
     <!-- Font Aweosme -->
-    <link rel="stylesheet" href="{{$css}}font-awesome.min.css">
+    {{--  <link rel="stylesheet" href="{{$css}}font-awesome.min.css">  --}}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <!-- Owl Carousel -->
     <link rel="stylesheet" href="{{$css}}owl.carousel.min.css">
     <!-- Magnific Popup -->
@@ -75,21 +76,26 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse navbar-morki">
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="active"><a href="#home" data-scroll>Beranda</a></li>
-
+                                <li class="active"><a href="{{url('/')}}" data-scroll>Beranda</a></li>
+                                @if ($page == 'Home')
                                 <!--li><a href="#screenshots" data-scroll>Screenshots</a></li-->
                                 <li><a href="#price-table" data-scroll>Paket Berlangganan</a></li>
                                <li><a href="#testimonial" data-scroll>Testimoni</a></li>
                                 <li><a href="#contact" data-scroll>Pasang Iklan</a></li>
-
-                                <li class="nav-download-btn"><a href="#download-app" data-scroll>Berlangganan</a></li>
+                                @else
+                                <!--li><a href="{{url('/')}}#screenshots" data-scroll>Screenshots</a></li-->
+                                <li><a href="{{url('/')}}#price-table" data-scroll>Paket Berlangganan</a></li>
+                               <li><a href="{{url('/')}}#testimonial" data-scroll>Testimoni</a></li>
+                                <li><a href="{{url('/')}}#contact" data-scroll>Pasang Iklan</a></li>
+                                @endif
+                                <li class="nav-download-btn"><a href="#price-table" data-scroll>Berlangganan</a></li>
                                  @if(!Session::get('id'))
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
+                            </li> -->
                         @else
                             <li class="nav-item">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

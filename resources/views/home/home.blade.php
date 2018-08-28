@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-md-7 col-sm-7 intro-info wow fadeIn">
                     <div class="intro-info-content">
-                        <h1>20 July 2018 <br/> Awas, <span>Neymar !</span></h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse unde blanditiis nostrum mollitia aliquam sed. Numquam ipsum unde repellendus similique autem non ab quibusdam enim provident distinctio! Fugit tenetur, iusto.</p>
+                        <h1>{{date('d F Y', strtotime($epaperz->edisi))}}<br/> {{$epaperz->judul}}</h1>
+                        <p>{{$epaperz->gagasan_utama}}</p>
                         <ul class="list-unstyled">
                             <li><a href="">Baca Sekarang Juga</a></li>
                             <!--li><a href="">Download Trial</a></li-->
@@ -33,78 +33,20 @@
                <div class="col-sm-12 section-header">
                    <h2>Edisi Sebelumnya</h2>
                </div>
+               @foreach ($epaper as $epaper)
+                   
+               
                 <div class="col-md-3 col-sm-6 mb-3">
                     <div class="service-box wow fadeIn" data-wow-delay="0.1s">
 
 
-                         <div><img src="images/Topskor2107201800.jpg" alt="" class="img-responsive"></div>
-                         <h3 align="center">19 Juli 2018</h3>
+                         <div><img src="{{$epaper->image}}" alt="" class="img-responsive"></div>
+                         <h3 align="center">{{date('d F Y', strtotime($epaper->edisi))}}</h3>
 
                     </div>
                 </div><!-- Ends: .col-sm-3 -->
-                <div class="col-md-3 col-sm-6 mb-3">
-                    <div class="service-box wow fadeIn" data-wow-delay="0.1s">
-
-
-                         <div><img src="images/Topskor2207201800.jpg" alt="" class="img-responsive"></div>
-                         <h3 align="center">19 Juli 2018</h3>
-
-                    </div>
-                </div><!-- Ends: .col-sm-3 -->
-                <div class="col-md-3 col-sm-6 mb-3">
-                    <div class="service-box wow fadeIn" data-wow-delay="0.1s">
-
-
-                         <div><img src="images/Topskor2307201800.jpg" alt="" class="img-responsive"></div>
-                         <h3 align="center">19 Juli 2018</h3>
-
-                    </div>
-                </div><!-- Ends: .col-sm-3 -->
-                <div class="col-md-3 col-sm-6 mb-3">
-                    <div class="service-box wow fadeIn" data-wow-delay="0.1s">
-
-
-                         <div><img src="images/Topskor2107201800.jpg" alt="" class="img-responsive"></div>
-                         <h3 align="center">19 Juli 2018</h3>
-
-                    </div>
-                </div><!-- Ends: .col-sm-3 -->
-                <div class="col-md-3 col-sm-6 mb-3">
-                    <div class="service-box wow fadeIn" data-wow-delay="0.1s">
-
-
-                         <div><img src="images/Topskor2207201800.jpg" alt="" class="img-responsive"></div>
-                         <h3 align="center">19 Juli 2018</h3>
-
-                    </div>
-                </div><!-- Ends: .col-sm-3 -->
-                <div class="col-md-3 col-sm-6 mb-3">
-                    <div class="service-box wow fadeIn" data-wow-delay="0.1s">
-
-
-                         <div><img src="images/Topskor2307201800.jpg" alt="" class="img-responsive"></div>
-                         <h3 align="center">19 Juli 2018</h3>
-
-                    </div>
-                </div><!-- Ends: .col-sm-3 -->
-                <div class="col-md-3 col-sm-6 mb-3">
-                    <div class="service-box wow fadeIn" data-wow-delay="0.1s">
-
-
-                         <div><img src="images/Topskor2107201800.jpg" alt="" class="img-responsive"></div>
-                         <h3 align="center">19 Juli 2018</h3>
-
-                    </div>
-                </div><!-- Ends: .col-sm-3 -->
-                <div class="col-md-3 col-sm-6 mb-3">
-                    <div class="service-box wow fadeIn" data-wow-delay="0.1s">
-
-
-                         <div><img src="images/Topskor2207201800.jpg" alt="" class="img-responsive"></div>
-                         <h3 align="center">19 Juli 2018</h3>
-
-                    </div>
-                </div><!-- Ends: .col-sm-3 -->
+                @endforeach
+                
 
             </div>
 
@@ -145,7 +87,7 @@
                             </ul>
                         </div>
                         <div class="price-btn">
-                            <a href="">Berlangganan</a>
+                            <a href="{{ route('register') }}">Berlangganan</a>
                         </div>
                     </div>
                 </div><!-- Ends: .col-sm-3 -->
@@ -168,7 +110,7 @@
                             </ul>
                         </div>
                         <div class="price-btn">
-                            <a href="">Berlangganan</a>
+                            <a href="{{ route('register') }}">Berlangganan</a>
                         </div>
                     </div>
                 </div><!-- Ends: .col-sm-3 -->
@@ -191,7 +133,7 @@
                             </ul>
                         </div>
                         <div class="price-btn">
-                            <a href="">Berlangganan</a>
+                            <a href="{{ route('register') }}">Berlangganan</a>
                         </div>
                     </div>
                 </div><!-- Ends: .col-sm-3 -->
@@ -214,7 +156,7 @@
                             </ul>
                         </div>
                         <div class="price-btn">
-                            <a href="">Berlangganan</a>
+                            <a href="{{ route('register') }}">Berlangganan</a>
                         </div>
                     </div>
                 </div><!-- Ends: .col-sm-3 -->
@@ -222,68 +164,37 @@
         </div>
     </section><!-- Ends: .price-table -->
 
-    <!-- Testimonial -->
     <section class="testimonial" id="testimonial">
         <div class="container">
             <div class="row">
                <div class="col-sm-12 section-header">
                    <h2>Testimoni</h2>
                </div>
+               
                 <div class="col-sm-8 col-sm-offset-2">
                     <div class="testimonial-slider owl-carousel wow fadeInUp">
+                        @foreach ($testi as $testi)
                     	<div class="slide-single">
                     		<div class="client-info">
 								<ul class="list-unstyled">
 									<li class="client-image">
-										<img src="images/client.png" alt="">
+										<img src="{{$testi->photo}}" alt="">
 									</li>
 									<li class="client-name">
-										<h3>Yusuf Kurniawan</h3>
-										<h4>Komentator Sepakbola</h4>
-										<span>Topskor</span>
+										<h3>{{$testi->nama}}</h3>
+										<h4>{{$testi->profesi}}</h4>
+										<span>{{$testi->company}}</span>
 									</li>
 								</ul>
                     		</div>
                     		<div class="client-text">
-                    			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto tenetur asperiores quod quas ipsum natus in consequatur corrupti, fuga accusamus placeat laboriosam quibusdam non officiis exercitationem quos hic harum animi velit dicta enim! Nihil accusantium excepturi et cupiditate tempora eos!</p>
+                    			<p>{{$testi->isi_testi}}</p>
                     		</div>
                     	</div><!-- Ends: .slide-single -->
-                    	<div class="slide-single">
-                    		<div class="client-info">
-								<ul class="list-unstyled">
-									<li class="client-image">
-										<img src="images/client.png" alt="">
-									</li>
-									<li class="client-name">
-                                        <h3>Yusuf Kurniawan</h3>
-                                        <h4>Komentator Sepakbola</h4>
-                                        <span>Topskor</span>
-                                    </li>
-								</ul>
-                    		</div>
-                    		<div class="client-text">
-                    			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto tenetur asperiores quod quas ipsum natus in consequatur corrupti, fuga accusamus placeat laboriosam quibusdam non officiis exercitationem quos hic harum animi velit dicta enim! Nihil accusantium excepturi et cupiditate tempora eos!</p>
-                    		</div>
-                    	</div><!-- Ends: .slide-single -->
-                    	<div class="slide-single">
-                    		<div class="client-info">
-								<ul class="list-unstyled">
-									<li class="client-image">
-										<img src="images/client.png" alt="">
-									</li>
-									<li class="client-name">
-                                        <h3>Yusuf Kurniawan</h3>
-                                        <h4>Komentator Sepakbola</h4>
-                                        <span>Topskor</span>
-                                    </li>
-								</ul>
-                    		</div>
-                    		<div class="client-text">
-                    			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto tenetur asperiores quod quas ipsum natus in consequatur corrupti, fuga accusamus placeat laboriosam quibusdam non officiis exercitationem quos hic harum animi velit dicta enim! Nihil accusantium excepturi et cupiditate tempora eos!</p>
-                    		</div>
-                    	</div><!-- Ends: .slide-single -->
+                        @endforeach
                     </div><!-- Ends: .testimonial-slider -->
                 </div>
+                
             </div>
         </div>
     </section><!-- Ends: .testimonial -->
@@ -311,67 +222,37 @@
             <div class="row">
 				<div class="col-sm-12 section-header">
 				   <h2>Berita Terpopuler</h2>
-				</div>
+                </div>
+                @foreach ($populer as $populer)
                 <div class="col-sm-4">
                     <div class="blog-single wow fadeIn" data-wow-delay="0.1s">
                         <figure>
-                            <img src="images/blog04.jpg" alt="" class="img-responsive">
+                           
+                                
+                            
+                            <img src="{{$populer->thumbnail}}" alt="" class="img-responsive">
                             <figcaption>
                                 <ul class="list-unstyled post-meta clearfix">
-                                    <li>23 Feb, 2018 </li>
-                                    <li><a href="">Bulutangkis</a></li>
+                                    <li>{{date('d F Y H:i', strtotime($populer->tgl_pub))}}</li>
+                                    {{-- <li><a href="">{{$populer->nama}}</a></li> --}}
+                                    <li><a href="">{{$populer->nama_section}}</a></li>
                                 </ul>
-                                <h3><a href="">Dignissimos nihil explicabo neque</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos modi at dignissimos nihil explicabo neque magni ea natus, mollitia ut.</p>
+                                <h3><a href="{{$url."blog/".$populer->id_artikel}}">{{$populer->judul_artikel}}</a></h3>
+                                <p>{!!$populer->gagasan_utama!!}</p>
                                 <ul class="list-unstyled post-bottom">
-                                    <li><a href="">Selengkapnya</a></li>
+                                    <li><a href="{{$url."blog/".$populer->id_artikel}}">Selengkapnya</a></li>
 
                                 </ul>
                             </figcaption>
+                           
                         </figure>
                     </div>
                 </div><!-- Ends: .col-sm-4 -->
-                <div class="col-sm-4">
-                    <div class="blog-single wow fadeIn" data-wow-delay="0.3s">
-                        <figure>
-                            <img src="images/blog05.jpg" alt="" class="img-responsive">
-                            <figcaption>
-                                <ul class="list-unstyled post-meta clearfix">
-                                    <li>23 Feb, 2018 </li>
-                                    <li><a href="">Tinju</a></li>
-                                </ul>
-                                <h3><a href="">Dignissimos nihil explicabo neque</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos modi at dignissimos nihil explicabo neque magni ea natus, mollitia ut.</p>
-                                <ul class="list-unstyled post-bottom">
-                                    <li><a href="">Selengkapnya</a></li>
-
-                                </ul>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </div><!-- Ends: .col-sm-4 -->
-                <div class="col-sm-4">
-                    <div class="blog-single wow fadeIn" data-wow-delay="0.5s">
-                        <figure>
-                            <img src="images/blog06.jpg" alt="" class="img-responsive">
-                            <figcaption>
-                                <ul class="list-unstyled post-meta clearfix">
-                                    <li>23 Feb, 2018 </li>
-                                    <li><a href="">Sepakbola</a></li>
-                                </ul>
-                                <h3><a href="">Dignissimos nihil explicabo neque</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos modi at dignissimos nihil explicabo neque magni ea natus, mollitia ut.</p>
-                                <ul class="list-unstyled post-bottom">
-                                    <li><a href="">Read More</a></li>
-                                    <li>Selengkapnya</li>
-                                </ul>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </div><!-- Ends: .col-sm-4 -->
+                @endforeach
+                
                 <div class="col-sm-12">
                 	<div class="blog-btn wow bounceIn" data-wow-delay="0.3s">
-                		<a href="">Go to Blog</a>
+                		<a href="{{url("/blog/")}}">Go to Blog</a>
                 	</div>
                 </div>
             </div>
@@ -418,11 +299,7 @@
                             <li><i class="fa fa-globe"></i> Web: www.yoursite.com</li>
                         </ul>
                         <ul class="list-unstyled contact-social">
-                            <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                            <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                            <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href=""><i class="fa fa-whatsapp"></i></a></li>
+                            
                         </ul>
                     </div>
                 </div><!-- Ends: .col-sm-4 -->

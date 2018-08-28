@@ -14,7 +14,8 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
+    {   
+        $url        = 'http://dev.topskor.id/epaper.topskor.id/';
         $css = secure_asset('/public/assets/css').'/';
         $css2 = secure_asset('/public/css').'/';
         $js = secure_asset('/public/assets/js').'/';
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
         $images = secure_asset('/public/assets/images').'/';
         $plugin = secure_asset('/public/assets/plugin').'/';
 
+        View::share('url',$url);
         View::share('css',$css);
         View::share('css2',$css2);
         View::share('js',$js);

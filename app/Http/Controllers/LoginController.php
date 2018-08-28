@@ -47,6 +47,8 @@ class LoginController extends Controller
         'email' =>  $user->email,
         'provider' => 'facebook',
         'provider_id' => $user->id,
+        'created_at'  =>  date('Y-m-d H:i:s'),
+        'updated_at' =>  date('Y-m-d H:i:s'),
         'urlmember' =>  str_slug($user->name)
       ];
       DB::table('users')->insert($dataz2);
@@ -79,6 +81,8 @@ class LoginController extends Controller
         'email' =>  $user->email,
         'provider' => 'google',
         'provider_id' => $user->id,
+        'created_at'  =>  date('Y-m-d H:i:s'),
+        'updated_at' =>  date('Y-m-d H:i:s'),
         'urlmember' =>  str_slug($user->name)
       ];
       DB::table('users')->insert($dataz2);
@@ -108,7 +112,7 @@ class LoginController extends Controller
         Session::put('provider',$dataz->provider);
         // dd($dataz);
         // dd(Session::get('id'));
-        return redirect('/dashboard');
+        return redirect('/');
       }
       else{
         return redirect('/login')->with('alert','Password Salah !');
