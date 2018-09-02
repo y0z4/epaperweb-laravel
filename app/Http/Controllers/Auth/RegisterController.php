@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\City;
+use App\Province;
 use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -12,6 +14,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Http\Requests;
 
 class RegisterController extends Controller
@@ -85,37 +89,106 @@ class RegisterController extends Controller
     //         'provider' => 'Manual',
     //     ]);
     // }
-    
+
+      // public function index()
+      // {
+      //   $cityx = User::leftJoin('city','city.id','=','city_id')
+      //               ->leftJoin('provinsi','provinsi.id','=','provinsi_id')
+      //               ->get();
+
+      //   $city = City::leftJoin('provinsi','provinsi.id','=','id_provinsi')
+      //             ->orderBy("city.id","ASC")
+      //             // ->where("provinsi.id","=",$id)
+      //             ->get();
+      //   $prov = Province::orderBy("provinsi.id","ASC")
+      //                 // ->Join('city','city.id_provinsi','=','provinsi.id')
+      //                 ->get();
+      // $page = 'Register';
+      // return view('auth.register',
+      // ['city' =>$city,
+      // 'prov' =>$prov,
+      // 'cityx' =>$cityx,
+      //  'page' =>$page]);
+      // }
+
+      public function province()
+      {
+        $prov = Province::orderBy("provinsi.id","ASC")
+                        ->pluck("name","id");
+        return view('auth.register',compact('prov')); 
+      }
+
+      public function cities($id)
+      {
+        $city = City::where("id_provinsi",$id)
+                      ->pluck("city_name","id");
+        return json_encode($city);
+        // return response()->json($city);
+      }
+
 
     function signup(Request $request)
   {
+    
     $dataz = User::where('email',$request->input('email'))
                 ->where('provider','Manual')
                 ->first();
+
     if(!empty($dataz)){
       $request->session()->flash('warning', 'Email already registered');
       return redirect('/register');
+    
     }else{
+      $img = 'https://dev.topskor.id/epaper.topskor.id/public/uploads/';
+      $file = $request->file('photo');
+      $origin = $file->getClientOriginalName();
+      $imgname = uniqid(true).$origin;
+      
       $dataz2 = [
         'provider'  =>  'Manual',
         'name'  =>  $request->input('name'),
         'username' =>  $request->input('username'),
+        'gender' => $request->input('gender'),
+        'phone' => $request->input('phone'),
+        'provinsi_id' => $request->input('prov'),
+        'city_id' =>$request->input('cities'),
+        'address' =>$request->input('address'),
         'email' =>  $request->input('email'),
+        // 'image' => $request->file('photo')->move(public_path('uploads/' .)),
+        'image' => $file->move(env('APP_URL').'public/uploads',$imgname),
         'password'  =>  md5($request->input('password')),
         'created_at'  =>  date('Y-m-d H:i:s'),
         'updated_at' =>  date('Y-m-d H:i:s'),
         'urlmember' =>  str_slug($request->input('name')),
       ];
       DB::table('users')->insert($dataz2);
+      // $photo = $request->file('photo');
+      // $ext = $photo->getClientOriginalExtension();
+      // Storage::disk('public')->put($photo->getFilename().'.'.$ext,File::get($photo));
+      // $dataz3 = new User();
+      // $dataz3 -> image = $photo->getClientOriginalName();
+      // $dataz3->save();
+      
+      
       $id = DB::getPdo()->lastInsertId();
+      $img = User::where('id','=',$id)->first();
         Session::put('id',$id);
         Session::put('name',$request->input('name'));
         Session::put('username',$request->input('username'));
+        Session::put('gender',$request->input('gender'));
+        Session::put('phone',$request->input('phone'));
+        Session::put('provinsi_id',$request->input('prov'));
+        Session::put('city_id',$request->input('cities'));
+        Session::put('address',$request->input('address'));
         Session::put('email',$request->input('email'));
+        Session::put('image',$img->image) ;
         Session::put('urlmember',str_slug($request->input('name')));
         Session::put('provider','Manual');
-        return redirect('/dashboard');
+        return redirect('/');
+
+        
     }
+    
   }
 
     // protected function signup(request $request) {

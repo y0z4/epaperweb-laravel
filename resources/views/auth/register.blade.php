@@ -14,7 +14,7 @@
                         @endif
                     <div class="container">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
+                    <form method="POST" enctype="multipart/form-data" action="{{ url('/register') }}" aria-label="{{ __('Register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -44,6 +44,65 @@
                                 @endif
                              </div>
                          </div>
+
+                         <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Jenis Kelamin') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="gender" id="gender" class="form-control">
+                                    <option value="1">Pria</option>
+                                    <option value="2">Wanita</option>
+                                </select>
+                            </div>
+                        </div>
+
+                         <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="phone" type="number" class="form-control" name="phone" value="{{ old('phone') }}">
+                            </div>
+                        </div>
+
+                        
+                        <div class="form-group row">
+                            {{-- <script>
+                                function getval(sel)
+                                {
+                                    alert(sel.value);
+                                }
+                            </script> --}}
+                            <label for="prov" class="col-md-4 col-form-label text-md-right">{{ __('Provinsi') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="prov" class="form-control">
+                                    <option value="">=== Pilih Provinsi ===</option>
+                                    @foreach ($prov as $key=>$value)
+                                        
+                                    <option value="{{$key}}">{{$value}}</option>
+                                    
+                                    @endforeach
+                                </select>
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('Kota') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="cities" class="form-control"> </select>
+                                            
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Alamat') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control" name="address" value="{{ old('Alamat') }}">
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
@@ -80,6 +139,20 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <div class="form-group row" style="margin-left:40%">
+                                <div class="col-md-6">
+                                <img src="{{$images}}default.png" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
+                                
+                                <input type="file" name="photo">
+                                {{-- @if(!empty($getuser->type=='Manual')) --}}
+                                {{-- <img src=" #" style="margin-top: 1%"> --}}
+                               
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        
+
+                        
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -94,4 +167,5 @@
         </div>
     </div>
 </div>
+
 @endsection

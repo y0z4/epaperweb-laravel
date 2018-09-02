@@ -5,10 +5,10 @@
             <div class="row">
                 <div class="col-md-7 col-sm-7 intro-info wow fadeIn">
                     <div class="intro-info-content">
-                        <h1>{{date('d F Y', strtotime($epaperz->edisi))}}<br/> {{$epaperz->judul}}</h1>
+                        <h1>{{date('d F Y', strtotime($epaperz->tgl_edisi))}}<br/> {{$epaperz->judul}}</h1>
                         <p>{{$epaperz->gagasan_utama}}</p>
                         <ul class="list-unstyled">
-                            <li><a href="">Baca Sekarang Juga</a></li>
+                            <li><a href="{{$url."epaper/".$epaperz->id}}">Baca Sekarang Juga</a></li>
                             <!--li><a href="">Download Trial</a></li-->
                         </ul>
                     </div>
@@ -40,8 +40,8 @@
                     <div class="service-box wow fadeIn" data-wow-delay="0.1s">
 
 
-                         <div><img src="{{$epaper->image}}" alt="" class="img-responsive"></div>
-                         <h3 align="center">{{date('d F Y', strtotime($epaper->edisi))}}</h3>
+                         <div><a href="{{$url."epaper/".$epaper->id}}"><img src="{{$epaper->image}}" alt="" class="img-responsive"></div>
+                         <h3 align="center">{{date('d F Y', strtotime($epaper->tgl_edisi))}}</a></h3>
 
                     </div>
                 </div><!-- Ends: .col-sm-3 -->
@@ -87,7 +87,7 @@
                             </ul>
                         </div>
                         <div class="price-btn">
-                            <a href="{{ route('register') }}">Berlangganan</a>
+                            <a href="{{ url('/register') }}">Berlangganan</a>
                         </div>
                     </div>
                 </div><!-- Ends: .col-sm-3 -->
@@ -110,7 +110,7 @@
                             </ul>
                         </div>
                         <div class="price-btn">
-                            <a href="{{ route('register') }}">Berlangganan</a>
+                            <a href="{{ url('/register') }}">Berlangganan</a>
                         </div>
                     </div>
                 </div><!-- Ends: .col-sm-3 -->
@@ -133,7 +133,7 @@
                             </ul>
                         </div>
                         <div class="price-btn">
-                            <a href="{{ route('register') }}">Berlangganan</a>
+                            <a href="{{ url('/register') }}">Berlangganan</a>
                         </div>
                     </div>
                 </div><!-- Ends: .col-sm-3 -->
@@ -156,7 +156,7 @@
                             </ul>
                         </div>
                         <div class="price-btn">
-                            <a href="{{ route('register') }}">Berlangganan</a>
+                            <a href="{{ url('/register') }}">Berlangganan</a>
                         </div>
                     </div>
                 </div><!-- Ends: .col-sm-3 -->

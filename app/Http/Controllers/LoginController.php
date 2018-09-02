@@ -40,7 +40,8 @@ class LoginController extends Controller
       Session::put('email',$dataz->email);
       Session::put('urlmember',$dataz->urlmember);
       Session::put('provider',$dataz->provider);
-      return redirect('/dashboard');
+      Session::put('image',$dataz->image);
+      return redirect('/');
     }else{
       $dataz2 = [
         'name'  =>  $user->name,
@@ -49,16 +50,19 @@ class LoginController extends Controller
         'provider_id' => $user->id,
         'created_at'  =>  date('Y-m-d H:i:s'),
         'updated_at' =>  date('Y-m-d H:i:s'),
-        'urlmember' =>  str_slug($user->name)
+        'urlmember' =>  str_slug($user->name),
+        'image' =>$user->avatar,
       ];
       DB::table('users')->insert($dataz2);
       $id = DB::getPdo()->lastInsertId();
+      $img = User::where('id','=',$id)->first();
         Session::put('id',$id);
         Session::put('name',$user->name);
         Session::put('email',$user->email);
         Session::put('urlmember',str_slug($user->name));
         Session::put('provider','facebook');
-        return redirect('/dashboard');
+        Session::put('image',$img->image);
+        return redirect('/');
     }
   }
 
@@ -107,7 +111,13 @@ class LoginController extends Controller
         Session::put('id',$dataz->id);
         Session::put('name',$dataz->name);
         Session::put('username',$dataz->username);
+        Session::put('gender',$dataz->gender);
+        Session::put('phone',$dataz->phone);
+        Session::put('provinsi_id',$dataz->provinsi_id);
+        Session::put('city_id',$dataz->city_id);
+        Session::put('address',$dataz->address);
         Session::put('email',$dataz->email);
+        Session::put('image',$dataz->image) ;
         Session::put('urlmember',$dataz->urlmember);
         Session::put('provider',$dataz->provider);
         // dd($dataz);

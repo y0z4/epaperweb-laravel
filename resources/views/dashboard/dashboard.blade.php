@@ -14,7 +14,10 @@
                         </div>
                     @endif
                 <div class="panel-body">
+                    {{-- {{dd(session()->all())}} --}}
                         <center>You are logged in!</center>
+                        <center><img src="{{Session::get('image')}}"></center>
+                        {{-- <center><img src="{{Session::get('image')->image}}"></center> --}}
                     Hello {{Session::get('name')}}!<br/>
                     Your email : {{Session::get('email')}}<br/>
                     You are login using username : {{Session::get('username')}}<br/>

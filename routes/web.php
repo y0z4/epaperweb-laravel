@@ -17,8 +17,10 @@
 Route::get('/', 'HomeController@index');
 Route::get('/blog/{any}', 'DetailBeritaController@index');
 Route::get('/blog/', 'BlogController@index');
-// Route::get('/blog/', function () {
-//     return view('blog/blog');
+Route::get('/epaper/{any}', 'EpaperController@index');
+
+// Route::get('/epaper/', function () {
+//     return view('detailepaper/index');
 // });
 
 Auth::routes();
@@ -29,10 +31,14 @@ Auth::routes();
 
 Route:: post('/login', 'LoginController@doLogin');
 Route:: post('/register', 'Auth\RegisterController@signup');
+// Route:: get('/register', 'Auth\RegisterController@index');
+Route:: get('/register',array('as'=>'register','uses'=>'Auth\RegisterController@province'));
+Route:: get('/register/cities/{id}', array('as'=>'register.cities','uses'=>'Auth\RegisterController@cities'));
 Route::get('/dashboard', 'DashboardController@index');
 Route::post('/user/{any}', 'UserController@index');
 Route::get('/user/{any}', 'UserController@index');
 Route::get('/logout', 'LoginController@logout');
+Route::get('/laman/{any}','LamanController@index');
 
 // Route::get('/login/{provider}', 'LoginController@auth')
 //      ->where(['provider'=>'facebook']);

@@ -31,18 +31,24 @@ class HomeController extends Controller
                             ->limit(3)
                             ->first();
         
-        $epaper = Epaper::orderBy('edisi','DESC')
+        $epaper = Epaper::where('t_epaper.title','=','Cover')
+                            ->orderBy('t_edisi.tgl_edisi','DESC')
                             ->leftJoin('t_admin','t_admin.id_adm','=','t_epaper.id_admin')
+                            ->leftJoin('t_edisi','t_edisi.id','=','t_epaper.edisi')
                             ->limit(8)
                             ->get();
         $epaperz = Epaper::whereDate('edisi',Carbon::today())
+                            ->where('t_epaper.title','=','Cover')
                             ->leftJoin('t_admin','t_admin.id_adm','=','t_epaper.id_admin')
-                            ->limit(8)
+                            ->leftJoin('t_edisi','t_edisi.id','=','t_epaper.edisi')
+                            ->limit(1)
                             ->first();
         if (!$epaperz) {
-            $epaperz = Epaper::orderBy('edisi','DESC')
+            $epaperz = Epaper::orderBy('t_edisi.tgl_edisi','DESC')
+                            ->where('t_epaper.title','=','Cover')
                             ->leftJoin('t_admin','t_admin.id_adm','=','t_epaper.id_admin')
-                            ->limit(8)
+                            ->leftJoin('t_edisi','t_edisi.id','=','t_epaper.edisi')
+                            ->limit(1)
                             ->first();
         } 
         
