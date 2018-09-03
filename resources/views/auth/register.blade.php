@@ -50,8 +50,8 @@
 
                             <div class="col-md-6">
                                 <select name="gender" id="gender" class="form-control">
-                                    <option value="1">Pria</option>
-                                    <option value="2">Wanita</option>
+                                    <option value="Pria">Pria</option>
+                                    <option value="Wanita">Wanita</option>
                                 </select>
                             </div>
                         </div>

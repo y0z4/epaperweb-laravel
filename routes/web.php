@@ -35,6 +35,7 @@ Route:: post('/register', 'Auth\RegisterController@signup');
 Route:: get('/register',array('as'=>'register','uses'=>'Auth\RegisterController@province'));
 Route:: get('/register/cities/{id}', array('as'=>'register.cities','uses'=>'Auth\RegisterController@cities'));
 Route::get('/dashboard', 'DashboardController@index');
+Route::post('/edit/editaction', 'DashboardController@editaction');
 Route::post('/user/{any}', 'UserController@index');
 Route::get('/user/{any}', 'UserController@index');
 Route::get('/logout', 'LoginController@logout');

@@ -78,6 +78,7 @@ class LoginController extends Controller
       Session::put('email',$dataz->email);
       Session::put('urlmember',$dataz->urlmember);
       Session::put('provider',$dataz->provider);
+      Session::put('image',$dataz->image);
       return redirect('/dashboard');
     }else{
       $dataz2 = [
@@ -87,15 +88,18 @@ class LoginController extends Controller
         'provider_id' => $user->id,
         'created_at'  =>  date('Y-m-d H:i:s'),
         'updated_at' =>  date('Y-m-d H:i:s'),
-        'urlmember' =>  str_slug($user->name)
+        'urlmember' =>  str_slug($user->name),
+        'image' =>$user->avatar_original,
       ];
       DB::table('users')->insert($dataz2);
       $id = DB::getPdo()->lastInsertId();
+      $img = User::where('id','=',$id)->first();
         Session::put('id',$id);
         Session::put('name',$user->name);
         Session::put('email',$user->email);
         Session::put('urlmember',str_slug($user->name));
         Session::put('provider','google');
+        Session::put('image',$img->image);
         return redirect('/dashboard');
     }
   }
