@@ -16,12 +16,43 @@
                 <div class="panel-body">
                     {{-- {{dd(session()->all())}} --}}
                         <center>You are logged in!</center>
-                        <center><img src="{{Session::get('image')}}" height="100" width="100"></center>
+                        {{-- {{print_r($getuser)}} --}}
+                        @php
+                        $img = DB::table('users')
+                                ->where('id','=',Session::get('id'))
+                                ->first();
+                            
+                        @endphp
+                        @if (!empty(Session::get('image')))
+                        <center><img src="{{$img->image}}" height="100" width="100"></center>
+                        @else
+                        <center><img src="{{$images}}default.png" height="100" width="100"></center>
+                        @endif
+                        
                         {{--  <center><img src="{{Session::get('image')->image}}"></center>  --}}
                     Hello {{Session::get('name')}}!<br/>
-                    Your email : {{Session::get('email')}}<br/>
-                    You are login using username : {{Session::get('username')}}<br/>
-                    And you are login via : {{Session::get('provider')}}<br/>
+                    
+                    {{-- You are login using username : {{Session::get('username')}}<br/> --}}
+                    Login via : {{Session::get('provider')}}<br/>
+                    Email : {{Session::get('email')}}<br/>
+                    Phone : {{Session::get('phone')}}<br/>
+                    Jenis Kelamin : {{Session::get('gender')}}<br/>
+                    Alamat : {{Session::get('address')}}<br/>
+                    
+                    
+                    @php
+                    use App\City;
+                    use App\Province;
+                    $prov_name=Province::where('id','=',Session::get('provinsi_id'))
+                                        ->pluck("name");
+                    $name_prov = str_replace(array('[',']','"'), "", $prov_name);
+                    $city_name=City::where('id','=',Session::get('city_id'))
+                                                ->pluck("city_name");
+                    $name_city = str_replace(array('[',']','"'), "", $city_name); 
+                    @endphp
+                    {{$name_city}}<br/>
+                    {{$name_prov}}<br/>
+                    
                     <center>
                             <a href="{{url('/')}}" class="btn btn-primary col-md-2">
                                 <i class="fa fa-home fa-fw"></i> Home                              </a>
@@ -71,11 +102,74 @@
 
             <div class="col-md-10 col-sm-10 col-xs-10" style="margin-left: 1%">
                 <div class="form-group">
+                    <label for="form_name">Phone</label>
+                    <input type="number" name="phone" class="form-control" value="{{Session::get('phone')}}">
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+
+            <div class="col-md-10 col-sm-10 col-xs-10" style="margin-left: 1%">
+                <div class="form-group">
+                    <label for="form_name">Jenis Kelamin</label>
+                    <select name="gender" id="gender" class="form-control">
+                        <option value="">{{Session::get('gender')}}</option>
+                        <option value="Pria">Pria</option>
+                        <option value="Wanita">Wanita</option>
+                    </select>
+                </div>
+            </div>
+
+            {{--  <div class="col-md-10 col-sm-10 col-xs-10" style="margin-left: 1%">
+                <div class="form-group">
                     <label for="form_name">Jenis Kelamin</label>
                     <input type="text" name="gender" class="form-control" value="{{Session::get('gender')}}">
                     <div class="help-block with-errors"></div>
                 </div>
-            </div>
+            </div>  --}}
+            <div class="col-md-10 col-sm-10 col-xs-10" style="margin-left: 1%">
+                    <div class="form-group">
+                        <label for="prov">Provinsi</label>
+                        <select name="prov" id="prov" class="form-control">
+                            
+                            @php
+                            
+                            use Illuminate\Support\Facades\Input;
+                            $prov = Province::orderBy("provinsi.id","ASC")
+                                    ->pluck("name","id"); 
+                            $prov_id=Input::get('id_provinsi');
+                            $city=City::where('id_provinsi','=',$prov)->get();
+                            $prov_name=Province::where('id','=',Session::get('provinsi_id'))
+                                        ->pluck("name");
+                            $name = str_replace(array('[',']','"'), "", $prov_name);
+                                                                                        
+                            @endphp
+
+                            <option value="">{{$name}}</option>  
+                            {{-- <option value="">{{$prov->name}}</option> --}}
+                            @foreach ($prov as $key=>$value)
+                                        
+                                    <option value="{{$key}}">{{$value}}</option>
+                                    
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-10 col-sm-10 col-xs-10" style="margin-left: 1%">
+                        <div class="form-group">
+                            <label for="city">Kota</label>
+                            <select name="cities" class="form-control"> 
+                            @php
+                            
+                            $city_name=City::where('id','=',Session::get('city_id'))
+                                                ->pluck("city_name");
+                            $name = str_replace(array('[',']','"'), "", $city_name);   
+                            @endphp
+                            <option value="">{{$name}}</option>
+                            </select>
+                        </div>
+                    </div>
+            
+
 
              <div class="col-md-10 col-sm-10 col-xs-10" style="margin-left: 1%">
                 <div class="form-group">
@@ -103,4 +197,35 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    {{--  function getval(sel)
+    {
+        alert(sel.value);
+    }  --}}
+    $(document).ready(function()
+    {
+        $('select[name="prov"]').on('change', function() {
+            var provID = $(this).val();
+            if(provID) {
+                $.ajax({
+                    url: 'https://dev.topskor.id/epaper.topskor.id/dashboard/cities/'+provID,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {                      
+                        $('select[name="cities"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="cities"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        console.log(data);
+                          });
+                        
+                    }
+                });
+                
+            }else{
+                $('select[name="cities"]').empty();
+            }
+        });
+    });
+  
+  </script>
 @endsection

@@ -21,37 +21,7 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript">
-  {{--  function getval(sel)
-  {
-      alert(sel.value);
-  }  --}}
-  $(document).ready(function()
-  {
-      $('select[name="prov"]').on('change', function() {
-          var provID = $(this).val();
-          if(provID) {
-              $.ajax({
-                  url: 'https://dev.topskor.id/epaper.topskor.id/register/cities/'+provID,
-                  type: "GET",
-                  dataType: "json",
-                  success:function(data) {                      
-                      $('select[name="cities"]').empty();
-                      $.each(data, function(key, value) {
-                          $('select[name="cities"]').append('<option value="'+ key +'">'+ value +'</option>');
-                      console.log(data);
-                        });
-                      
-                  }
-              });
-              
-          }else{
-              $('select[name="cities"]').empty();
-          }
-      });
-  });
 
-</script>
 <!------ Include the above in your HEAD tag ---------->
 
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">

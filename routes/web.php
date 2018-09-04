@@ -34,6 +34,8 @@ Route:: post('/register', 'Auth\RegisterController@signup');
 // Route:: get('/register', 'Auth\RegisterController@index');
 Route:: get('/register',array('as'=>'register','uses'=>'Auth\RegisterController@province'));
 Route:: get('/register/cities/{id}', array('as'=>'register.cities','uses'=>'Auth\RegisterController@cities'));
+Route:: get('/dashboard',array('as'=>'edit','uses'=>'DashboardController@province'));
+Route:: get('/dashboard/cities/{id}', array('as'=>'edit.cities','uses'=>'DashboardController@cities'));
 Route::get('/dashboard', 'DashboardController@index');
 Route::post('/edit/editaction', 'DashboardController@editaction');
 Route::post('/user/{any}', 'UserController@index');

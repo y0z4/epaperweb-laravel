@@ -75,7 +75,7 @@
                         <div class="col row omb_row-sm-offset-3 omb_loginOr" style="margin-left:35%">
                             <div class="col-xs-12 col-sm-6">
                                 
-                                <span class="omb_spanOr"style="margin-left:35%">or</span>
+                                
                                 
                             </div>
                         </div>

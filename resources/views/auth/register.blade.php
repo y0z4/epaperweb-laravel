@@ -167,5 +167,36 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    {{--  function getval(sel)
+    {
+        alert(sel.value);
+    }  --}}
+    $(document).ready(function()
+    {
+        $('select[name="prov"]').on('change', function() {
+            var provID = $(this).val();
+            if(provID) {
+                $.ajax({
+                    url: 'https://dev.topskor.id/epaper.topskor.id/register/cities/'+provID,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {                      
+                        $('select[name="cities"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="cities"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        console.log(data);
+                          });
+                        
+                    }
+                });
+                
+            }else{
+                $('select[name="cities"]').empty();
+            }
+        });
+    });
+  
+  </script>
 
 @endsection
