@@ -9,7 +9,7 @@ class LamanController extends Controller
 {
     public function index($title=0)
     {
-        $laman = Laman::where('urltitle','=',$title)
+        $laman = Laman::where('seo_hs','=',$title)
                       ->first();
         $page = 'Laman';
 

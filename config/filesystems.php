@@ -56,6 +56,24 @@ return [
             'visibility' => 'public',
         ],
 
+        'sftp1' => [
+            'driver' => 'sftp',
+            'host' => env('SFTP_HOST'),
+            'port' => env('SFTP_PORT'),
+            'username' => env('SFTP_USERNAME'),
+            'password' => env('SFTP_PASSWORD'),
+            'root' => '/data/media/epaper/buktipembayaran/',
+            'visibility' => 'public',
+        ],
+
+        'static' => [
+            'driver' => 'local',
+            // 'root' => storage_path('app/public'),
+            'root' => 'https://static.topskor.id/epaper/',
+            'url' => 'https://static.topskor.id/epaper/',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

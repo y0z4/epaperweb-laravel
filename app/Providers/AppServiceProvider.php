@@ -15,22 +15,26 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {   
-        $url        = 'https://dev.topskor.id/epaper.topskor.id/';
-        $css = secure_asset('/public/assets/css').'/';
-        $ecss = secure_asset('/public/assets/epaper/css').'/';
-        $css2 = secure_asset('/public/css').'/';
-        $js = secure_asset('/public/assets/js').'/';
-        $ejs = secure_asset('/public/assets/epaper/js').'/';
-        $js2 = secure_asset('/public/js').'/';
-        $mp3 = secure_asset('/public/assets/epaper/mp3').'/';
-        $pdf = secure_asset('/public/assets/epaper/pdf').'/';
-        $font = secure_asset('/public/assets/fonts').'/';
-        $efont = secure_asset('/public/assets/epaper/webfonts').'/';
-        $images = secure_asset('/public/assets/images').'/';
-        $eimages = secure_asset('/public/assets/epaper/images').'/';
-        $plugin = secure_asset('/public/assets/plugin').'/';
+        $url      = 'https://dev.topskor.id/epaper.topskor.id/';
+        $urlimg   = 'https://static.topskor.id/epaper/artikel/';
+        $paycss   = secure_asset('/public/assets/payment/css').'/';
+        $css      = secure_asset('/public/assets/css').'/';
+        $ecss     = secure_asset('/public/assets/epaper/css').'/';
+        $css2     = secure_asset('/public/css').'/';
+        $js       = secure_asset('/public/assets/js').'/';
+        $ejs      = secure_asset('/public/assets/epaper/js').'/';
+        $js2      = secure_asset('/public/js').'/';
+        $mp3      = secure_asset('/public/assets/epaper/mp3').'/';
+        $pdf      = secure_asset('/public/assets/epaper/pdf').'/';
+        $font     = secure_asset('/public/assets/fonts').'/';
+        $efont    = secure_asset('/public/assets/epaper/webfonts').'/';
+        $images   = secure_asset('/public/assets/images').'/';
+        $eimages  = secure_asset('/public/assets/epaper/images').'/';
+        $plugin   = secure_asset('/public/assets/plugin').'/';
 
         View::share('url',$url);
+        View::share('urlimg',$urlimg);
+        View::share('paycss',$paycss);
         View::share('css',$css);
         View::share('ecss',$ecss);
         View::share('css2',$css2);

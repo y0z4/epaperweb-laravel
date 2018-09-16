@@ -12,31 +12,38 @@ use Illuminate\Support\Facades\File;
 use App\User;
 use App\City;
 use App\Province;
+use App\Epaper;
 use DB;
 
 class DashboardController extends Controller
 {
-	public function index(request $request)
+	public function index()
 	{
-		if(!Session::get('id')){
-			return redirect('login')->with('alert','Login First');
+		if(Session::get('id')){
+			
 			$page = 'Dashboard';
+			$epaper = Epaper::where('t_epaper.position','=',1)
+                            ->where('t_epaper.parent_id','=',0)
+                            ->orderBy('t_edisi.tgl_edisi','DESC')
+                            ->leftJoin('t_admin','t_admin.id_adm','=','t_epaper.id_admin')
+                            ->leftJoin('t_edisi','t_edisi.id','=','t_epaper.edisi')
+                            ->select('t_epaper.*','t_admin.*','t_edisi.*','t_epaper.id as epaper_id')
+                            ->limit(8)
+                            ->get();
 
-		 	$getuser = User::where('id', '=', $id)
-		            ->first();
+		 
 		
 
 		 return view ('dashboard.dashboard',[
-		 	'page' => $page,
-			'getuser' => $getuser,
-			'prov'=>$prov,
+			 'page' => $page,
+			 'epaper' =>$epaper
+
 		 	
 		 ]);
-		  }
-		  else{
-			return view('dashboard/dashboard');
-		  }
-		}
+		}else{
+			return redirect('login')->with('alert','Login First');
+        }
+	}
 
 	
 	public function province()
@@ -85,7 +92,7 @@ class DashboardController extends Controller
 			->update($data);
 	}else{
 		$data = [
-				'id'   => $request->input('id'),
+				
 				'name' => $request->input('name'),
 				'email' => $request->input('email'),
 				'gender' => $request->input('gender'),

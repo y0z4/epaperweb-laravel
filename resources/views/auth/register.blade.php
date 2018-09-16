@@ -14,7 +14,7 @@
                         @endif
                     <div class="container">
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" action="{{ url('/register') }}" aria-label="{{ __('Register') }}">
+                    <form method="POST" autocomplete="off" enctype="multipart/form-data" action="{{ url('/register') }}" aria-label="{{ __('Register') }}">
                         @csrf
 
                         <div class="form-group row">
